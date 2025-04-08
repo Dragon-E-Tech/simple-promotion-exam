@@ -16,13 +16,6 @@ A simple REST API service for managing promotions built with Node.js, Express, a
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd simple-promotion-management
-```
-
-2. Install dependencies:
 ```bash
 npm install
 ```
