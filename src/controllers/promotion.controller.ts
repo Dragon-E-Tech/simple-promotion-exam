@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
-import { ExampleService } from '../services/example.service';
+import { PromotionService } from '../services/promotion.service';
 
-export class ExampleController {
-  private service: ExampleService;
+export class PromotionController {
+  private service: PromotionService;
 
   constructor() {
-    this.service = new ExampleService();
+    this.service = new PromotionService();
   }
 
   getAll = async (req: Request, res: Response): Promise<void> => {
     try {
-      const items = await this.service.getAll();
-      res.json(items);
+      const promotions = await this.service.getAll();
+      res.json(promotions);
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }
@@ -19,13 +19,12 @@ export class ExampleController {
 
   getById = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id);
-      const item = await this.service.getById(id);
-      if (!item) {
-        res.status(404).json({ error: 'Not found' });
+      const promotion = await this.service.getById(req.params.id);
+      if (!promotion) {
+        res.status(404).json({ error: 'Promotion not found' });
         return;
       }
-      res.json(item);
+      res.json(promotion);
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }
@@ -33,8 +32,8 @@ export class ExampleController {
 
   create = async (req: Request, res: Response): Promise<void> => {
     try {
-      const item = await this.service.create(req.body);
-      res.status(201).json(item);
+      const promotion = await this.service.create(req.body);
+      res.status(201).json(promotion);
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }
@@ -42,13 +41,12 @@ export class ExampleController {
 
   update = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id);
-      const item = await this.service.update(id, req.body);
-      if (!item) {
-        res.status(404).json({ error: 'Not found' });
+      const promotion = await this.service.update(req.params.id, req.body);
+      if (!promotion) {
+        res.status(404).json({ error: 'Promotion not found' });
         return;
       }
-      res.json(item);
+      res.json(promotion);
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }
@@ -56,10 +54,9 @@ export class ExampleController {
 
   delete = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id);
-      const success = await this.service.delete(id);
+      const success = await this.service.delete(req.params.id);
       if (!success) {
-        res.status(404).json({ error: 'Not found' });
+        res.status(404).json({ error: 'Promotion not found' });
         return;
       }
       res.status(204).send();

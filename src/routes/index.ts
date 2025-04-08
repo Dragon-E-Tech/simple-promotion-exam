@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { exampleRouter } from './example.routes';
+import { promotionRouter } from './promotion.routes';
 
 export const router = Router();
 
 // Register routes
-router.use('/example', exampleRouter); 
+router.use('/promotions', promotionRouter); 

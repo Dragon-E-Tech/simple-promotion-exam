@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { ExampleController } from '../controllers/example.controller';
+import { PromotionController } from '../controllers/promotion.controller';
 
 const router = Router();
-const controller = new ExampleController();
+const controller = new PromotionController();
 
 router.get('/', controller.getAll);
 router.get('/:id', controller.getById);
@@ -10,4 +10,4 @@ router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.delete('/:id', controller.delete);
 
-export const exampleRouter = router; 
+export const promotionRouter = router; 
