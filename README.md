@@ -25,6 +25,7 @@ npm install
 ### Development Mode
 
 To run the application in development mode with hot reloading:
+
 ```bash
 npm run dev
 ```
@@ -32,11 +33,13 @@ npm run dev
 ### Production Mode
 
 1. Build the TypeScript files:
+
 ```bash
 npm run build
 ```
 
 2. Start the application:
+
 ```bash
 npm start
 ```
@@ -56,9 +59,10 @@ simple-promotion-management/
 
 - `POST /promotions` - Create a new promotion
 - `GET /promotions` - Get all promotions
-- `GET /promotions/:id` - Get a specific promotion
-- `PUT /promotions/:id` - Update a promotion
-- `DELETE /promotions/:id` - Delete a promotion
+- `GET /promotions/:uuid` - Get a specific promotion
+- `PUT /promotions/:uuid` - Update a promotion
+- `PATCH /promotions/:uuid` - Set a promotion active status
+- `DELETE /promotions/:uuid` - Delete a promotion
 
 ## Technologies Used
 
@@ -70,4 +74,4 @@ simple-promotion-management/
 
 ## License
 
-ISC 
+ISC
