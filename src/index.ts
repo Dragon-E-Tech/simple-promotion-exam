@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import { router } from './routes';
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json());

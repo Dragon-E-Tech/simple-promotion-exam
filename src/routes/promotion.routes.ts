@@ -4,7 +4,8 @@ import { validate } from '../middleware/validate';
 import {
   createPromotionValidation,
   updatePromotionValidation,
-  getPromotionValidation
+  getPromotionValidation,
+  setActivePromotionValidation
 } from '../validators/promotion.validator';
 
 const router = Router();
@@ -14,6 +15,7 @@ router.get('/', controller.getAll);
 router.get('/:id', getPromotionValidation, validate, controller.getById);
 router.post('/', createPromotionValidation, validate, controller.create);
 router.put('/:id', updatePromotionValidation, validate, controller.update);
+router.patch('/:id', setActivePromotionValidation, validate, controller.setActive);
 router.delete('/:id', getPromotionValidation, validate, controller.delete);
 
 export const promotionRouter = router; 

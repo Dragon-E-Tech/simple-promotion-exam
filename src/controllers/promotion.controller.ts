@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { PromotionService } from '../services/promotion.service';
+import { Request, Response } from "express";
+import { PromotionService } from "../services/promotion.service";
 
 export class PromotionController {
   private service: PromotionService;
@@ -13,7 +13,7 @@ export class PromotionController {
       const promotions = await this.service.getAll();
       res.json(promotions);
     } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: "Internal server error" });
     }
   };
 
@@ -21,12 +21,12 @@ export class PromotionController {
     try {
       const promotion = await this.service.getById(req.params.id);
       if (!promotion) {
-        res.status(404).json({ error: 'Promotion not found' });
+        res.status(404).json({ error: "Promotion not found" });
         return;
       }
       res.json(promotion);
     } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: "Internal server error" });
     }
   };
 
@@ -35,7 +35,7 @@ export class PromotionController {
       const promotion = await this.service.create(req.body);
       res.status(201).json(promotion);
     } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: "Internal server error" });
     }
   };
 
@@ -43,12 +43,28 @@ export class PromotionController {
     try {
       const promotion = await this.service.update(req.params.id, req.body);
       if (!promotion) {
-        res.status(404).json({ error: 'Promotion not found' });
+        res.status(404).json({ error: "Promotion not found" });
         return;
       }
       res.json(promotion);
     } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
+
+  setActive = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const promotion = await this.service.setActive(
+        req.params.id,
+        req.body.isActive
+      );
+      if (!promotion) {
+        res.status(404).json({ error: "Promotion not found" });
+        return;
+      }
+      res.json(promotion);
+    } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
     }
   };
 
@@ -56,12 +72,12 @@ export class PromotionController {
     try {
       const success = await this.service.delete(req.params.id);
       if (!success) {
-        res.status(404).json({ error: 'Promotion not found' });
+        res.status(404).json({ error: "Promotion not found" });
         return;
       }
       res.status(204).send();
     } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: "Internal server error" });
     }
   };
-} 
+}

@@ -90,7 +90,16 @@ export const updatePromotionValidation = [
       }
       return true;
     }),
-  
+];
+
+
+export const setActivePromotionValidation = [
+  param('id')
+    .trim()
+    .notEmpty()
+    .withMessage('Promotion ID is required')
+    .isUUID()
+    .withMessage('Invalid promotion ID format'),
   body('isActive')
     .optional()
     .isBoolean()
