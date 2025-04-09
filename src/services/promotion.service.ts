@@ -1,8 +1,13 @@
+import { promotionMock } from "../mocks/promotion.mock";
 import { Promotion } from "../models/promotion.model";
 import { v4 as uuidv4 } from "uuid";
 
 export class PromotionService {
   private promotions: Promotion[] = [];
+
+  constructor() {
+    this.promotions = promotionMock;
+  }
 
   async getAll(): Promise<Promotion[]> {
     return this.promotions;
